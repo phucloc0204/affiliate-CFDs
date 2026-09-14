@@ -81,11 +81,77 @@
         <a href="index.html" class="text-amber-600 font-bold">Blog Kiến Thức</a>
       </nav>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="https://zalo.me/g/lmqwcx788" target="_blank" rel="noopener" class="inline-flex sm:hidden items-center gap-1.5 px-3 py-2 rounded-full bg-amber-500 text-white font-bold text-xs shadow-sm">
+          <i class="fa-solid fa-comments"></i>
+          <span>Zalo VIP</span>
+        </a>
+
         <a href="https://zalo.me/g/lmqwcx788" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-white font-bold text-sm shadow-lg shadow-amber-500/25 transition-all transform hover:-translate-y-0.5">
           <i class="fa-solid fa-comments"></i>
           <span>Vào Nhóm Zalo VIP</span>
         </a>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button id="mobile-menu-btn" type="button" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-slate-700 hover:text-amber-600 hover:bg-slate-100 transition-colors focus:outline-none" aria-label="Toggle Navigation Menu">
+          <i id="menu-icon-bars" class="fa-solid fa-bars text-xl"></i>
+          <i id="menu-icon-close" class="fa-solid fa-xmark text-xl hidden"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer / Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white/95 backdrop-blur-md shadow-xl transition-all duration-200">
+      <div class="px-4 py-4 space-y-1.5">
+        <a href="../index.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-600 transition-colors">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-house text-amber-500 w-5 text-center"></i>
+            <span>Trang Chủ Halumoni</span>
+          </span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-300"></i>
+        </a>
+        <a href="../index.html#brokers" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-600 transition-colors">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-building-columns text-amber-500 w-5 text-center"></i>
+            <span>Sàn Đối Tác Uy Tín</span>
+          </span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-300"></i>
+        </a>
+        <a href="../index.html#ea-bot" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-600 transition-colors">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-robot text-amber-500 w-5 text-center"></i>
+            <span>EA Bot Cent</span>
+          </span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-300"></i>
+        </a>
+        <a href="../index.html#copy-trade" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-600 transition-colors">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-users text-amber-500 w-5 text-center"></i>
+            <span>Copy Trade Chuyên Gia</span>
+          </span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-300"></i>
+        </a>
+        <a href="../index.html#backcom" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-600 transition-colors">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-hand-holding-dollar text-amber-500 w-5 text-center"></i>
+            <span>Hoàn Phí (Backcom)</span>
+          </span>
+          <i class="fa-solid fa-chevron-right text-xs text-slate-300"></i>
+        </a>
+        <a href="index.html" class="mobile-nav-link flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold text-amber-600 bg-amber-50/80 hover:bg-amber-100/90 transition-colors">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-book-open text-amber-600 w-5 text-center"></i>
+            <span>Blog Kiến Thức</span>
+          </span>
+          <i class="fa-solid fa-arrow-right text-xs text-amber-600"></i>
+        </a>
+
+        <div class="pt-3 mt-2 border-t border-slate-100">
+          <a href="https://zalo.me/g/lmqwcx788" target="_blank" rel="noopener" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold text-sm shadow-md shadow-amber-500/20">
+            <i class="fa-solid fa-comments"></i>
+            <span>Vào Nhóm Zalo VIP (Free)</span>
+          </a>
+        </div>
       </div>
     </div>
   </header>
@@ -526,6 +592,30 @@
       </div>
     </div>
   </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconBars = document.getElementById('menu-icon-bars');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.toggle('hidden');
+        menuIconBars.classList.toggle('hidden', !isHidden);
+        menuIconClose.classList.toggle('hidden', isHidden);
+      });
+
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIconBars.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+        });
+      });
+    }
+  </script>
 
 </body>
 </html>
