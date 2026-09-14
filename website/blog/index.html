@@ -280,8 +280,15 @@
               </div>
               <p class="text-slate-500 mt-1">Nạp rút tức thì 24/7, spread Vàng cực thấp.</p>
               <a href="https://one.exnessonelink.com/a/ir0nvk2lbc" target="_blank" rel="noopener" class="mt-2.5 inline-block w-full text-center py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold transition-colors">
-                Mở Tài Khoản Exness (Mã: ir0nvk2lbc)
+                Mở Tài Khoản Exness
               </a>
+              <div class="mt-2 flex items-center justify-between text-[11px] pt-1.5 border-t border-slate-200/60">
+                <span class="text-slate-500">Mã App:</span>
+                <button type="button" onclick="copyPartnerCode('ir0nvk2lbc', this)" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-100 hover:bg-amber-200 active:scale-95 text-amber-900 font-mono font-bold cursor-pointer transition-all" title="Chạm để copy">
+                  <span>ir0nvk2lbc</span>
+                  <i class="fa-regular fa-copy text-amber-700 text-[10px]"></i>
+                </button>
+              </div>
             </div>
 
             <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
@@ -291,8 +298,15 @@
               </div>
               <p class="text-slate-500 mt-1">Khớp lệnh siêu tốc, tối ưu cho Copy Trade.</p>
               <a href="https://vigco.co/la-com-inv/vi/1c6NlWSX" target="_blank" rel="noopener" class="mt-2.5 inline-block w-full text-center py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold transition-colors">
-                Mở Tài Khoản Vantage (Mã: 1c6NlWSX)
+                Mở Tài Khoản Vantage
               </a>
+              <div class="mt-2 flex items-center justify-between text-[11px] pt-1.5 border-t border-slate-200/60">
+                <span class="text-slate-500">Mã App:</span>
+                <button type="button" onclick="copyPartnerCode('1c6NlWSX', this)" class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-100 hover:bg-blue-200 active:scale-95 text-blue-900 font-mono font-bold cursor-pointer transition-all" title="Chạm để copy">
+                  <span>1c6NlWSX</span>
+                  <i class="fa-regular fa-copy text-blue-700 text-[10px]"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -329,8 +343,15 @@
     </div>
   </footer>
 
-  <!-- Mobile Menu Script -->
+  <!-- Floating Toast Notification for Copy -->
+  <div id="copy-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 opacity-0 translate-y-4 scale-95 flex items-center gap-2.5 px-5 py-3 rounded-full bg-slate-900/95 text-white text-xs sm:text-sm font-semibold shadow-2xl border border-white/10 backdrop-blur-md">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="copy-toast-msg">Đã sao chép mã đối tác!</span>
+  </div>
+
+  <!-- Scripts -->
   <script>
+    // 1. Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIconBars = document.getElementById('menu-icon-bars');
@@ -350,6 +371,59 @@
           menuIconClose.classList.add('hidden');
         });
       });
+    }
+
+    // 2. One-Click Copy Partner Code with Feedback
+    function copyPartnerCode(code, element) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(code).catch(() => fallbackCopy(code));
+      } else {
+        fallbackCopy(code);
+      }
+
+      if (element) {
+        const originalHtml = element.innerHTML;
+        element.innerHTML = `<span class="text-emerald-700 font-bold flex items-center gap-1"><i class="fa-solid fa-check text-emerald-600"></i> Đã copy!</span>`;
+        element.classList.add('bg-emerald-50', 'border-emerald-400');
+        setTimeout(() => {
+          element.innerHTML = originalHtml;
+          element.classList.remove('bg-emerald-50', 'border-emerald-400');
+        }, 2000);
+      }
+
+      showCopyToast('Đã copy mã: ' + code);
+    }
+
+    function fallbackCopy(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Fallback copy failed', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function showCopyToast(msg) {
+      const toast = document.getElementById('copy-toast');
+      const toastMsg = document.getElementById('copy-toast-msg');
+      if (toast && toastMsg) {
+        toastMsg.textContent = msg;
+        toast.classList.remove('opacity-0', 'translate-y-4', 'scale-95');
+        toast.classList.add('opacity-100', 'translate-y-0', 'scale-100');
+        clearTimeout(window.copyToastTimer);
+        window.copyToastTimer = setTimeout(() => {
+          toast.classList.remove('opacity-100', 'translate-y-0', 'scale-100');
+          toast.classList.add('opacity-0', 'translate-y-4', 'scale-95');
+        }, 2200);
+      }
     }
   </script>
 
